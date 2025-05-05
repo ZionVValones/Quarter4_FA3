@@ -6,28 +6,27 @@ function promptNumber() {
 
   number = parseInt(number);
   const output = document.getElementById("output");
-  let shape = "Number inputted: " + number + "\n\n";
 
+  let shape = "Number inputted: " + number + "\n\n";
+  const digitWidth = String(number).length; 
+  
   if (number % 2 !== 0) {
     for (let i = number; i >= 1; i--) {
       let line = "";
       for (let j = 0; j < number; j++) {
-        line += i;
-        if (j < number - 1) line += " ";
+        line += String(i).padStart(digitWidth, " ") + " ";
       }
-      shape += line + "\n";
+      shape += line.trimEnd() + "\n"; 
     }
   } else {
     for (let i = number; i >= 1; i--) {
       let line = "";
       for (let j = 0; j < i; j++) {
-        line += i;
-        if (j < i - 1) line += " ";
+        line += String(i).padStart(digitWidth, " ") + " ";
       }
-      shape += line + "\n";
+      shape += line.trimEnd() + "\n";
     }
-  }  
-
+  }
   output.textContent = shape;
 }
 
@@ -46,7 +45,6 @@ function addContact() {
     renderContacts();
 }  
 
-
 function removeContact() {
   contacts.pop();
   renderContacts();
@@ -61,3 +59,4 @@ function renderContacts() {
     list.appendChild(li);
   });
 }
+
